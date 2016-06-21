@@ -1,6 +1,6 @@
 {
   "name": "ujson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Methods to work with json files and objects.",
   "main": "index.js",
   "repository": { "type": "git", "url": "https://github.com/jmjuanes/ujson.git" },
