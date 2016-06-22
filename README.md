@@ -26,10 +26,10 @@ Reads the content of a JSON file. Accepts the following arguments:
 If options is a string, then it specifies the encoding. Example:
 
 ```javascript
-ujson.read('file.json', 'utf8', function(err, data){
-
+ujson.read('file.json', 'utf8', function(err, data)
+{
   //Check for error
-	if(err){ throw err }
+  if(err){ throw err }
 
   //Show json content
   console.log(data);
@@ -52,11 +52,12 @@ Write the object to the json file specified. Accepts the following arguments:
 
 Example:
 ```javascript
-ujson.write('file.json', { key: 'value' }, { encoding: 'utf8', jsonSapce: '\t' }, function(err){
-
+ujson.write('file.json', { key: 'value' }, { encoding: 'utf8', jsonSapce: '\t' }, function(err)
+{
   //Check for error
   if(err){ throw err; }
 
+  //Do something....
 });
 ```
 
@@ -78,6 +79,7 @@ var obj_child = { key4: 'value4' };
 //Extend
 var obj_extended = ujson.extend(obj_child, obj_parent, [ 'key1', 'key2' ]);
 
+//Show  extended object
 console.log(obj_extended); //-> { key4: 'value4', key1: 'value1', key2: 'value2' }
 ```
 
