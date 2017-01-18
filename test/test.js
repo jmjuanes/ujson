@@ -9,7 +9,7 @@ console.log(JSON.stringify(content1));
 //Test write json file sync
 console.log('Write json Sync...');
 var content2 = { write_json_file_sync: true };
-ujson.writeSync('./write_sync.json', content2, { encoding: 'utf8', jsonSpace: '   '});
+ujson.writeSync('./write_sync.json', content2, { encoding: 'utf8', spaces: '   '});
 
 //Test extend a json object
 console.log('Extend json object...');
