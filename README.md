@@ -15,13 +15,24 @@ npm install ujson
 
 ## API
 
+### ujson.parse(str)
+
+Parses a JSON string and builds the JavaScript value or object described by the string.
+
+### ujson.toString(obj, [ space])
+
+Converts a JavaScript object to a JSON string. Accepts the following arguments:
+- `obj`: JavaScript object to converts to a string.
+- `space`: string or number that's used to insert white space into the output JSON string for readability purposes.
+
+
 ### ujson.read(path, [options, ] callback)
 
 Reads the content of a JSON file. Accepts the following arguments:
 - `path`: full path to the json file.
 - `options`: (optionally) object or string with the following options:
   - `encoding`: default: `utf8`.
-- `callback`: function that will be executed with two arguments: `err` and `data`, where `data` is a parsed object with the file content in json format.
+- `callback`: function that will be executed with two arguments: `err` and `data`, where `data` is a parsed object with the file content in json format, and error is `true` when there is an error reading the JSON file, and `false` if all is ok.
 
 If options is a string, then it specifies the encoding. Example:
 
@@ -29,7 +40,7 @@ If options is a string, then it specifies the encoding. Example:
 ujson.read('file.json', 'utf8', function(err, data)
 {
   //Check for error
-  if(err){ throw err }
+  if(err){ throw new Error('Error reading the JSON file'); }
 
   //Show json content
   console.log(data);
@@ -47,7 +58,7 @@ Write the object to the json file specified. Accepts the following arguments:
 - `object`: json object that will be saved as a json file.
 - `options` (optionally) object or string with the following options:
   - `encoding`: default: `utf8`.
-	- `jsonSpace`: string or number that's used to insert white space into the output JSON string for readability purposes.
+  - `space`: string or number that's used to insert white space into the output JSON string for readability purposes.
 - `callback`: function.
 
 Example:
@@ -55,7 +66,7 @@ Example:
 ujson.write('file.json', { key: 'value' }, { encoding: 'utf8', jsonSapce: '\t' }, function(err)
 {
   //Check for error
-  if(err){ throw err; }
+  if(err){ throw new Error('Error writing the JSON file'); }
 
   //Do something....
 });
