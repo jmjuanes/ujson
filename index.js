@@ -8,13 +8,13 @@ var json = {};
 json.parse = function(str){ return JSON.parse(str); };
 
 //Convert to string
-json.toString = function(obj, spaces)
+json.toString = function(obj, space)
 {
   //Check the spaces
-  if(typeof spaces !== 'string'){ var spaces = ''; }
+  if(typeof space !== 'string'){ var space = ''; }
 
   //Convert to string and return
-  return JSON.stringify(obj, null, spaces);
+  return JSON.stringify(obj, null, space);
 };
 
 //Extend a json object
@@ -47,7 +47,7 @@ json.write = function(file, obj, opt, cb)
   var opt = check_opts(opt);
 
   //Write the file
-  fs.writeFile(file, json.toString(obj, opt.spaces), opt.encoding, function(error)
+  fs.writeFile(file, json.toString(obj, opt.space), opt.encoding, function(error)
   {
     //Check for error
     if(error){ return cb(true, error); }
@@ -64,7 +64,7 @@ json.writeSync = function(file, obj, opt)
   var opt = check_opts(opt);
 
   //Save to a file and exit
-  return fs.writeFileSync(file, json.toString(obj, opt.spaces), opt.encoding);
+  return fs.writeFileSync(file, json.toString(obj, opt.space), opt.encoding);
 };
 
 //Read from JSON file
@@ -116,7 +116,7 @@ var check_opts = function(opt)
   if(typeof opt.encoding !== 'string'){ opt.encoding = 'utf8'; }
 
   //Check the json spaces
-  if(typeof opt.spaces === 'undefined'){ opt.spaces = '  '; }
+  if(typeof opt.space === 'undefined'){ opt.space = ''; }
 
   //Return the parsed options
   return opt;
