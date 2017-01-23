@@ -32,15 +32,15 @@ Reads the content of a JSON file. Accepts the following arguments:
 - `path`: full path to the json file.
 - `options`: (optionally) object or string with the following options:
   - `encoding`: default: `utf8`.
-- `callback`: function that will be executed with two arguments: `err` and `data`, where `data` is a parsed object with the file content in json format, and error is `true` when there is an error reading the JSON file, and `false` if all is ok.
+- `callback`: function that will be executed with two arguments: `error` and `data`, where `data` is a parsed object with the file content in JSON format, and `error` is an Error object (see https://nodejs.org/api/errors.html#errors_class_error) if there is an error reading the JSON file.
 
 If options is a string, then it specifies the encoding. Example:
 
 ```javascript
-ujson.read('file.json', 'utf8', function(err, data)
+ujson.read('file.json', 'utf8', function(error, data)
 {
   //Check for error
-  if(err){ throw new Error('Error reading the JSON file'); }
+  if(error){ throw error; }
 
   //Show json content
   console.log(data);
@@ -63,10 +63,10 @@ Write the object to the json file specified. Accepts the following arguments:
 
 Example:
 ```javascript
-ujson.write('file.json', { key: 'value' }, { encoding: 'utf8', jsonSapce: '\t' }, function(err)
+ujson.write('file.json', { key: 'value' }, { encoding: 'utf8', space: '\t' }, function(error)
 {
   //Check for error
-  if(err){ throw new Error('Error writing the JSON file'); }
+  if(err){ throw error; }
 
   //Do something....
 });
