@@ -50,10 +50,10 @@ json.write = function(file, obj, opt, cb)
   fs.writeFile(file, json.toString(obj, opt.space), opt.encoding, function(error)
   {
     //Check for error
-    if(error){ return cb(true, error); }
+    if(error){ return cb(error); }
 
     //Do the callback without error
-    return cb(false);
+    return cb(null);
   });
 };
 
@@ -80,13 +80,13 @@ json.read = function(file, opt, cb)
   fs.readFile(file, opt.encoding, function(error, data)
   {
     //Check for error
-    if(error){ return cb(true, error); }
+    if(error){ return cb(error, null); }
 
     //Parse the data
     data = json.parse(data);
 
     //Return the json object
-    return cb(false, data);
+    return cb(null, data);
   });
 };
 
